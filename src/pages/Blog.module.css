@@ -17,25 +17,26 @@
 }
 
 .blogSection {
-  padding: 6rem 0;
+  padding: 3rem 0;
 }
 
 .blogGrid {
   display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  max-width: 1350px;
 }
 
 /* Sidebar */
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.5rem;
 }
 
 .widget {
   background-color: var(--color-white);
-  padding: 2rem;
+  padding: 1.25rem;
   border: 1px solid var(--color-border);
   position: relative;
 }
@@ -52,8 +53,8 @@
 }
 
 .widget h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
   color: var(--color-dark);
 }
 
@@ -174,7 +175,7 @@
 }
 
 .articleContent {
-  padding: 1.25rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
