@@ -5,6 +5,7 @@ import PageTransition from './components/layout/PageTransition';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
+import ServiceDetail from './pages/ServiceDetail';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
@@ -17,6 +18,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+        <Route path="/services/:serviceId" element={<PageTransition><ServiceDetail /></PageTransition>} />
         <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
