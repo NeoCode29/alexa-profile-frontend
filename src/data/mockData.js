@@ -40,56 +40,121 @@ export const articlesData = [
     title: 'Pentingnya Transformasi Digital Bagi UMKM di Era Modern',
     category: 'Teknologi',
     date: '12 Jul 2026',
+    author: 'Tim Editorial MediaKampung',
+    readTime: '4 min read',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
-    excerpt: 'Transformasi digital bukan lagi sekadar pilihan, melainkan keharusan bagi UMKM untuk bertahan dan berkembang...'
+    excerpt: 'Transformasi digital bukan lagi sekadar pilihan, melainkan keharusan bagi UMKM untuk bertahan dan berkembang...',
+    content: [
+      'Transformasi digital telah mengubah lanskap bisnis global secara fundamental. Di Indonesia, Usaha Mikro, Kecil, dan Menengah (UMKM) menjadi tulang punggung perekonomian dengan kontribusi signifikan terhadap PDB nasional. Namun, di tengah pergeseran kebiasaan konsumen menuju ranah digital, UMKM dihadapkan pada tuntutan untuk beradaptasi dengan cepat atau berisiko tertinggal oleh kompetitor yang lebih tangkas.',
+      '## Mengapa Transformasi Digital Menjadi Keharusan?',
+      'Bukan lagi rahasia bahwa digitalisasi membuka gerbang menuju pasar yang tanpa batas geografis. Dengan mengadopsi sistem informasi pemasaran digital, e-commerce, dan cloud accounting, pelaku UMKM dapat memangkas biaya operasional sekaligus meningkatkan efisiensi proses bisnis secara dramatis.',
+      '> "Teknologi bukanlah pengeluaran, melainkan investasi strategis yang akan melipatgandakan kapasitas pertumbuhan bisnis di masa depan." — Direktur Alexa Computindo Group',
+      '## Peran Infrastruktur dan Layanan Pendukung',
+      'Langkah awal transformasi digital bermula dari fondasi teknologi yang solid. Divisi WebMedia siap membantu merancang website profesional maupun sistem manajemen terintegrasi (ERP/CRM) yang disesuaikan dengan skala bisnis Anda. Didukung oleh infrastruktur jaringan berkecepatan tinggi dari InetMedia, operasional bisnis Anda dipastikan berjalan tanpa henti dengan keandalan tertinggi.'
+    ]
   },
   {
     id: 2,
     title: 'Memilih Layanan Internet Provider yang Tepat untuk Kantor',
     category: 'Tips Jaringan',
     date: '08 Jul 2026',
+    author: 'Network Engineer InetMedia',
+    readTime: '5 min read',
     image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80',
-    excerpt: 'Koneksi internet yang stabil adalah urat nadi operasional kantor modern. Berikut panduan memilih ISP terbaik...'
+    excerpt: 'Koneksi internet yang stabil adalah urat nadi operasional kantor modern. Berikut panduan memilih ISP terbaik...',
+    content: [
+      'Koneksi internet yang stabil adalah urat nadi operasional kantor modern. Mulai dari video konferensi dengan klien mancanegara, pengelolaan data di server cloud, hingga komunikasi tim secara real-time, seluruhnya bergantung pada stabilitas jaringan internet.',
+      '## Perbedaan Broadband Biasa dan Dedicated Internet',
+      'Banyak perusahaan sering tergiur oleh harga murah layanan internet broadband rumahan. Padahal, untuk kebutuhan korporasi, koneksi Dedicated Internet (1:1 simetris) sangat mutlak diperlukan. Dengan koneksi dedicated, kecepatan upload dan download dipastikan setara dan jalur data tidak terbagi dengan pengguna umum di waktu sibuk.',
+      '## Service Level Agreement (SLA) sebagai Jaminan Mutu',
+      'Hal krusial kedua yang harus dicermati adalah jaminan SLA (Service Level Agreement). Layanan kelas bisnis sejati seperti InetMedia berkomitmen memberikan jaminan uptime hingga 99.9% yang dibarengi dengan dukungan teknis on-site 24 jam sehari, 7 hari seminggu.'
+    ]
   },
   {
     id: 3,
     title: 'Mengenal Tren Desain Website Corporate di Tahun 2026',
     category: 'Desain Web',
     date: '02 Jul 2026',
+    author: 'UI/UX Specialist WebMedia',
+    readTime: '4 min read',
     image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80',
-    excerpt: 'Tren desain selalu berputar. Desain geometris dengan warna brand yang kuat kini kembali mendominasi...'
+    excerpt: 'Tren desain selalu berputar. Desain geometris dengan warna brand yang kuat kini kembali mendominasi...',
+    content: [
+      'Dunia desain web terus berkembang dengan kecepatan tinggi. Pada tahun 2026, kita menyaksikan kembalinya estetika desain geometris yang tegas, diimbangi dengan palet warna solid korporat dan tipografi yang elegan dan bersih.',
+      '## Mengapa Desain Geometris Menjadi Populer?',
+      'Bentuk sudut yang tajam (sharp geometric edges) mencerminkan kepastian, struktur, dan profesionalisme. Perusahaan multinasional maupun grup korporat modern menggunakan garis-garis diagonal dan potongan geometri untuk menciptakan karakter visual yang tak terlupakan dan membedakan diri dari desain template standar.',
+      '## Kecepatan dan Core Web Vitals',
+      'Estetika yang indah harus didukung oleh performa teknis yang tanpa cacat. Google Core Web Vitals kini menjadi standar utama dalam penentuan peringkat SEO. Tim WebMedia merancang setiap situs dengan optimasi kode modern dan kompresi aset maksimal untuk memastikan waktu muat di bawah 1 detik.'
+    ]
   },
   {
     id: 4,
     title: 'Keamanan Jaringan 101: Mencegah Kebocoran Data Perusahaan',
     category: 'Teknologi',
     date: '28 Jun 2026',
+    author: 'Tim Keamanan Siber Alexa',
+    readTime: '6 min read',
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80',
-    excerpt: 'Dengan semakin canggihnya serangan siber, perusahaan dituntut memiliki keamanan jaringan berlapis...'
+    excerpt: 'Dengan semakin canggihnya serangan siber, perusahaan dituntut memiliki keamanan jaringan berlapis...',
+    content: [
+      'Serangan siber saat ini tidak lagi hanya menargetkan lembaga pemerintah atau bank besar, tetapi juga bisnis skala menengah dan organisasi swasta. Kebocoran data tidak hanya mengakibatkan kerugian finansial langsung, tetapi juga menghancurkan reputasi yang telah dibangun bertahun-tahun.',
+      '## Pentingnya Arsitektur Keamanan Berlapis (Defense in Depth)',
+      'Mengandalkan satu firewall saja tidak lagi cukup. Perusahaan harus mengadopsi pendekatan keamanan berlapis yang mencakup enkripsi data end-to-end, segmentasi jaringan VLAN, segmentasi hak akses pengguna, serta pemantauan aktivitas jaringan secara aktif 24/7.',
+      '> "Keamanan informasi bukanlah tujuan akhir, melainkan proses berkelanjutan dalam mengenali, memitigasi, dan memulihkan ancaman." — Security Best Practices ISO/IEC 27001',
+      '## Audit dan Backup Rutin',
+      'Pastikan bahwa setiap cadangan data (backup) disimpan secara terisolasi dan diuji secara berkala untuk memastikan bisnis Anda siap bangkit dalam skenario pemulihan bencana (Disaster Recovery Plan).'
+    ]
   },
   {
     id: 5,
     title: 'Cara Efektif Membangun Sistem Informasi Manajemen',
     category: 'Software',
     date: '25 Jun 2026',
+    author: 'Senior Architect WebMedia',
+    readTime: '5 min read',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-    excerpt: 'Sistem Informasi Manajemen (SIM) yang baik dapat meningkatkan efisiensi kerja tim secara signifikan...'
+    excerpt: 'Sistem Informasi Manajemen (SIM) yang baik dapat meningkatkan efisiensi kerja tim secara signifikan...',
+    content: [
+      'Sistem Informasi Manajemen (SIM) atau Enterprise Resource Planning (ERP) yang dirancang dengan baik adalah rahasia di balik efisiensi operasional perusahaan-perusahaan raksasa. SIM mengintegrasikan seluruh departemen, mulai dari SDM, keuangan, inventaris, hingga manajemen proyek ke dalam satu dasbor tunggal.',
+      '## Pendekatan Custom Development vs Ready-to-Use',
+      'Meskipun perangkat lunak siap pakai menawarkan proses instalasi instan, seringkali alur kerjanya kaku dan memaksa perusahaan mengubah standar operasional prosedur (SOP) mereka agar cocok dengan software. Sebaliknya, pengembangan aplikasi kustom oleh divisi WebMedia menyesuaikan diri 100% dengan alur bisnis unik Anda.',
+      '## Integrasi API dan Skalabilitas',
+      'Sistem yang baik dibangun dengan arsitektur modular (microservices) dan API siap pakai, sehingga ketika bisnis Anda berkembang pesat, penambahan modul baru dapat dilakukan dengan mulus tanpa mengganggu sistem yang sedang berjalan.'
+    ]
   },
   {
     id: 6,
     title: 'Masa Depan Cloud Computing di Indonesia',
     category: 'Teknologi',
     date: '20 Jun 2026',
+    author: 'Tim Editorial MediaKampung',
+    readTime: '4 min read',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
-    excerpt: 'Adopsi cloud di Indonesia terus meningkat seiring kebutuhan akses data yang lebih cepat dan aman...'
+    excerpt: 'Adopsi cloud di Indonesia terus meningkat seiring kebutuhan akses data yang lebih cepat dan aman...',
+    content: [
+      'Infrastruktur komputasi awan (Cloud Computing) mengalami pertumbuhan eksponensial di Indonesia seiring dengan masuknya berbagai data center bertaraf internasional tier-3 dan tier-4 ke Jakarta dan kota-kota besar lainnya.',
+      '## Keuntungan Migrasi ke Cloud bagi Korporasi',
+      'Dengan beralih dari server fisik lokal (on-premise) ke layanan cloud atau hybrid cloud, perusahaan dapat menghemat anggaran pembelanjaan modal (CAPEX) perangkat keras yang mahal dan beralih ke model biaya operasional (OPEX) yang fleksibel sesuai pemakaian.',
+      '## Konektivitas Cloud yang Handal',
+      'Untuk memanfaatkan cloud computing secara maksimal, jalur internet yang stabil adalah prasyarat utama. Layanan Dedicated Bandwidth dari InetMedia dirancang untuk memberikan latensi terendah menuju simpul-simpul data center utama di dalam maupun luar negeri.'
+    ]
   },
   {
     id: 7,
     title: 'Manfaat Website Custom Dibandingkan Template',
     category: 'Desain Web',
     date: '15 Jun 2026',
+    author: 'UI/UX Specialist WebMedia',
+    readTime: '5 min read',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
-    excerpt: 'Mengapa korporasi lebih memilih website custom? Berikut perbandingan mendalam yang perlu Anda ketahui...'
+    excerpt: 'Mengapa korporasi lebih memilih website custom? Berikut perbandingan mendalam yang perlu Anda ketahui...',
+    content: [
+      'Ketika membangun identitas online untuk merek korporat, pilihan pertama yang dihadapi adalah: menggunakan template instan dengan harga murah, atau berinvestasi pada pengembangan website custom dari nol?',
+      '## Kelemahan Template Instan',
+      'Template sering kali membawa ribuan baris kode yang tidak dibutuhkan (bloated code) demi mendukung puluhan fitur generik. Hal ini menyebabkan loading website menjadi sangat lambat dan berpotensi memuat kerentanan keamanan yang tersembunyi dari plugin pihak ketiga.',
+      '## Keunggulan Desain Kustom WebMedia',
+      'Dengan website custom, Anda mendapatkan kepemilikan penuh atas kode, arsitektur keamanan yang disesuaikan standar korporat, serta desain visual eksklusif yang tidak akan pernah Anda temukan pada pesaing bisnis Anda.'
+    ]
   }
 ];
 

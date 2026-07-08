@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaSearch, FaArrowRight } from 'react-icons/fa';
 import styles from './Blog.module.css';
 import { articlesData } from '../data/mockData';
@@ -65,16 +66,18 @@ const Blog = () => {
               {filteredArticles.length > 0 ? (
                 filteredArticles.map(article => (
                   <div key={article.id} className={`${styles.articleCard} sharp-box`}>
-                    <div className={styles.articleImgWrapper}>
+                    <Link to={`/blog/${article.id}`} className={styles.articleImgWrapper}>
                       <img src={article.image} alt={article.title} />
                       <div className={styles.articleCategory}>{article.category}</div>
-                    </div>
+                    </Link>
                     <div className={styles.articleContent}>
                       <span className={styles.articleDate}>{article.date}</span>
-                      <h3>{article.title}</h3>
-                      <a href="#" className={styles.readMore}>
+                      <Link to={`/blog/${article.id}`}>
+                        <h3>{article.title}</h3>
+                      </Link>
+                      <Link to={`/blog/${article.id}`} className={styles.readMore}>
                         Baca <FaArrowRight size={12} />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 ))
