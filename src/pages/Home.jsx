@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegNewspaper, FaWifi, FaLaptopCode, FaArrowRight } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 // import Marquee from 'react-fast-marquee';
 import styles from './Home.module.css';
 import { servicesData, clientsData, articlesData } from '../data/mockData';
@@ -11,6 +12,21 @@ const fadeUp = {
 };
 
 const Home = () => {
+  const heroImages = [
+    "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
+  ];
+  
+  const [currentImageIdx, setCurrentImageIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIdx((prevIdx) => (prevIdx + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   const getIcon = (iconName) => {
     switch(iconName) {
       case 'FaRegNewspaper': return <FaRegNewspaper size={48} />;
@@ -32,7 +48,6 @@ const Home = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className={styles.heroBadge}>#1 Tech Corporate in ID</div>
             <h1 className={styles.heroTitle}>
               Membangun Infrastruktur <br />
               <span className={styles.textHighlight}>Digital Masa Depan</span>
@@ -48,6 +63,25 @@ const Home = () => {
                 Pelajari Lebih Lanjut
               </Link>
             </div>
+          </motion.div>
+          <motion.div
+            className={styles.heroImageWrapper}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentImageIdx}
+                src={heroImages[currentImageIdx]}
+                alt="Tech Corporate"
+                className={styles.heroImage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              />
+            </AnimatePresence>
           </motion.div>
         </div>
         <div className={styles.heroTriangle}></div>
@@ -159,7 +193,7 @@ const Home = () => {
           </div>
           
           <div className={styles.articlesGrid}>
-            {articlesData.map((article, idx) => (
+            {articlesData.slice(0, 3).map((article, idx) => (
               <motion.div 
                 key={article.id} 
                 className={`${styles.articleCard} sharp-box`}
