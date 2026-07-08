@@ -1,0 +1,345 @@
+.servicesHero {
+  background-color: var(--color-dark);
+  padding: 8rem 0 6rem;
+  position: relative;
+}
+
+.servicesHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, transparent 48%, var(--color-green) 49%, var(--color-green) 51%, transparent 52%);
+  background-size: 40px 40px;
+  opacity: 0.05;
+}
+
+.serviceSection {
+  padding: 6rem 0;
+}
+
+.bgDark {
+  background-color: var(--color-dark);
+}
+
+.sectionHeader {
+  margin-bottom: 4rem;
+}
+
+.headerLabel {
+  display: inline-block;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 4px 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  /* Triangle cut on right side */
+  clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+  padding-right: 24px;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+}
+
+.sectionHeader p {
+  color: #64748B;
+  font-size: 1.1rem;
+  max-width: 700px;
+}
+
+/* Pricing Grid */
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pricingCard {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 3rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.pricingCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0px rgba(29, 42, 53, 0.1);
+}
+
+.popular {
+  border: 2px solid var(--color-green);
+  box-shadow: 10px 10px 0px rgba(59, 174, 124, 0.2);
+}
+
+.popularBadge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+  padding-right: 24px;
+}
+
+.pricingCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-green);
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.featureList {
+  margin-bottom: 3rem;
+}
+
+.featureList li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.5rem 0;
+  color: #64748B;
+}
+
+.checkIcon {
+  color: var(--color-green);
+  flex-shrink: 0;
+}
+
+/* Dark Pricing Cards (NetMedia) */
+.pricingCardDark {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.pricingCardDark h3 {
+  color: var(--color-white);
+}
+
+.pricingCardDark .featureList li {
+  color: #94A3B8;
+  border-color: rgba(255,255,255,0.1);
+}
+
+.pricingCardDark .price {
+  border-color: rgba(255,255,255,0.1);
+}
+
+.popularDark {
+  border: 2px solid var(--color-green);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+/* Portfolio Box */
+.portfolioBox {
+  margin-top: 6rem;
+}
+
+.divider {
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-green);
+  margin: 1rem 0 2rem;
+}
+
+.portfolioGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.portfolioItem {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.portfolioItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.portfolioOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(29, 42, 53, 0.9);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolioItem:hover img {
+  transform: scale(1.05);
+}
+
+.portfolioItem:hover .portfolioOverlay {
+  opacity: 1;
+}
+
+.overlayContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.portfolioItem:hover .overlayContent {
+  transform: translateY(0);
+}
+
+.overlayContent h4 {
+  color: var(--color-white);
+  font-size: 1.25rem;
+}
+
+.portfolioLink {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+  transition: background-color 0.3s ease;
+}
+
+.portfolioLink:hover {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+}
+
+/* Media Banner */
+.mediaBanner {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mediaBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: var(--color-green);
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  opacity: 0.1;
+}
+
+.mediaBannerContent {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.mediaBannerContent h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.mediaBannerContent p {
+  font-size: 1.1rem;
+  color: #94A3B8;
+}
+
+/* Testimonials */
+.testiSection {
+  padding: 6rem 0;
+  background-color: var(--color-light-gray);
+}
+
+.testiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.testiCard {
+  background-color: var(--color-white);
+  padding: 3rem;
+  position: relative;
+  border: 1px solid var(--color-border);
+}
+
+.testiAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-green);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.testiQuote {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-dark);
+  margin-bottom: 2rem;
+  font-style: italic;
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-border);
+}
+
+.testiAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authorAvatar {
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-dark);
+  /* Hexagon shape */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.testiAuthor h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.testiAuthor span {
+  color: #64748B;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .pricingGrid { grid-template-columns: 1fr; }
+  .portfolioGrid, .testiGrid { grid-template-columns: 1fr; }
+  .mediaBanner { padding: 4rem 2rem; }
+}

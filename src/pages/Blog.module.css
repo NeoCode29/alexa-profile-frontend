@@ -1,0 +1,258 @@
+.blogHero {
+  background-color: var(--color-dark);
+  padding: 8rem 0 4rem;
+  position: relative;
+}
+
+.blogHero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background-color: var(--color-green);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0.2;
+}
+
+.blogSection {
+  padding: 6rem 0;
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.widget {
+  background-color: var(--color-white);
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+
+/* Top border decoration */
+.widget::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 50%;
+  height: 4px;
+  background-color: var(--color-green);
+}
+
+.widget h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-dark);
+}
+
+.searchBox {
+  display: flex;
+}
+
+.searchInput {
+  flex-grow: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border);
+  border-right: none;
+  outline: none;
+  font-family: var(--font-main);
+  background-color: var(--color-light-gray);
+  border-radius: 0; /* Sharp corners */
+}
+
+.searchInput:focus {
+  border-color: var(--color-green);
+}
+
+.searchBtn {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.searchBtn:hover {
+  background-color: var(--color-dark);
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryList li {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.categoryList li:last-child {
+  border-bottom: none;
+}
+
+.categoryBtn {
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 1rem 0;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-weight: 700;
+  color: #64748B;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.categoryBtn:hover, .categoryBtn.active {
+  color: var(--color-green);
+  padding-left: 10px;
+}
+
+/* Main Content */
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.articleCard {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.articleCard:hover {
+  border-color: var(--color-green);
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0px rgba(29, 42, 53, 0.1);
+}
+
+.articleImgWrapper {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.articleImgWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.articleCard:hover .articleImgWrapper img {
+  transform: scale(1.05);
+}
+
+.articleCategory {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.articleContent {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.articleDate {
+  color: #94A3B8;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.articleContent h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  color: var(--color-dark);
+}
+
+.articleContent p {
+  color: #64748B;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-green);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  padding: 4rem;
+  background-color: var(--color-white);
+  text-align: center;
+  color: var(--color-dark);
+  font-weight: 700;
+  border: 1px dashed var(--color-border);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 4rem;
+}
+
+.pageBtn {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-dark);
+  font-family: var(--font-main);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pageBtn:hover, .pageActive {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border-color: var(--color-green);
+}
+
+@media (max-width: 992px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+  }
+  .articlesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .articlesGrid {
+    grid-template-columns: 1fr;
+  }
+}

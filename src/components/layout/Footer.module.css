@@ -1,0 +1,136 @@
+.footer {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  position: relative;
+  /* Top border with triangle cut */
+  border-top: 10px solid var(--color-green);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  padding: 5rem 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.logoMark {
+  width: 28px;
+  height: 28px;
+  background-color: var(--color-green);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.textAG {
+  color: var(--color-white);
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.textGroup {
+  color: var(--color-green);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.description {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.socials a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-green);
+  transition: all 0.3s ease;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Hexagon */
+}
+
+.socials a:hover {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+.linksCol h3, .contactCol h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+}
+
+.linksCol ul, .contactCol ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.linksCol a {
+  color: #94A3B8;
+  transition: color 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.linksCol a:hover {
+  color: var(--color-green);
+  transform: translateX(5px);
+}
+
+.contactCol li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+
+.icon {
+  color: var(--color-green);
+  margin-top: 4px;
+}
+
+.copyright {
+  text-align: center;
+  padding: 1.5rem 0;
+  background-color: #0F172A; /* Slightly darker than dark blue */
+  color: #64748B;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
