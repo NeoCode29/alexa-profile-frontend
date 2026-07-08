@@ -1,7 +1,7 @@
-import { FaEye, FaBullseye, FaFilePdf, FaDownload } from 'react-icons/fa';
+import { FaEye, FaBullseye } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
-import { teamData, reportsData } from '../data/mockData';
+import { teamData } from '../data/mockData';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
@@ -141,34 +141,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Reports */}
-      <section className={styles.reportSection}>
-        <div className="container">
-          <motion.div 
-            className={styles.reportBox}
-            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          >
-            <div className={styles.reportText}>
-              <h2>Transparansi & Laporan</h2>
-              <p>Kami berkomitmen pada keterbukaan informasi. Unduh laporan tahunan perusahaan kami di sini.</p>
-            </div>
-            <div className={styles.reportList}>
-              {reportsData.map((report, idx) => (
-                <div key={idx} className={`${styles.reportItem} sharp-box`}>
-                  <div className={styles.reportItemInfo}>
-                    <FaFilePdf size={24} color="var(--color-green)" />
-                    <div>
-                      <h4>{report.title}</h4>
-                      <span>Ukuran: {report.size}</span>
-                    </div>
-                  </div>
-                  <button className="btn btn-primary" style={{ padding: '8px 16px' }}><FaDownload /> Unduh</button>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
 
     </div>
   );
