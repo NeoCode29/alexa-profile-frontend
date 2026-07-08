@@ -72,7 +72,6 @@ const Blog = () => {
                     <div className={styles.articleContent}>
                       <span className={styles.articleDate}>{article.date}</span>
                       <h3>{article.title}</h3>
-                      <p>{article.excerpt}</p>
                       <a href="#" className={styles.readMore}>
                         Baca <FaArrowRight size={12} />
                       </a>
