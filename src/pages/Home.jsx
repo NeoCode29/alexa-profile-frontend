@@ -121,7 +121,7 @@ const Home = () => {
                 <h3>{service.title}</h3>
                 <h4 className={styles.serviceSubtitle}>{service.subtitle}</h4>
                 <p>{service.description}</p>
-                <Link to={`/services#${service.id}`} className={styles.serviceLink}>
+                <Link to={`/services/${service.id}`} className={styles.serviceLink}>
                   Pelajari <FaArrowRight size={14} />
                 </Link>
                 <div className={styles.serviceNumber}>0{idx + 1}</div>

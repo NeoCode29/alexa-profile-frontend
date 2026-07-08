@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaArrowRight } from 'react-icons/fa';
 import styles from './Careers.module.css';
 import { careersData } from '../data/mockData';

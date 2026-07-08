@@ -24,9 +24,9 @@ const Footer = () => {
         <div className={styles.linksCol}>
           <h3>Layanan Kami</h3>
           <ul>
-            <li><Link to="/services#mediakampung">MediaKampung</Link></li>
-            <li><Link to="/services#inetmedia">InetMedia</Link></li>
-            <li><Link to="/services#webmedia">WebMedia</Link></li>
+            <li><Link to="/services/mediakampung">MediaKampung</Link></li>
+            <li><Link to="/services/inetmedia">InetMedia</Link></li>
+            <li><Link to="/services/webmedia">WebMedia</Link></li>
           </ul>
         </div>
 
