@@ -14,10 +14,6 @@ const ServiceDetail = () => {
   const { serviceId } = useParams();
   const service = serviceDetailsData[serviceId];
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [serviceId]);
-
   if (!service) {
     return (
       <div className="container text-center" style={{ padding: '8rem 0', minHeight: '60vh' }}>

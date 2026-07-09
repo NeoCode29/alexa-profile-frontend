@@ -13,8 +13,14 @@ import NotFound from './pages/NotFound';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const handleExitComplete = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />

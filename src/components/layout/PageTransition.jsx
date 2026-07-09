@@ -3,7 +3,19 @@ import { motion } from 'framer-motion';
 
 const PageTransition = ({ children }) => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const forceScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    };
+    
+    // Force scroll to top immediately when component mounts
+    forceScroll();
+    
+    // Fallback for some mobile browsers
+    const timeout = setTimeout(forceScroll, 10);
+    
+    return () => clearTimeout(timeout);
   }, []);
 
   return (

@@ -373,8 +373,9 @@
 }
 
 @media (max-width: 768px) {
+  .detailHero { padding: 6rem 0 3rem; }
   .title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .featuresGrid, .pricingGrid, .portfolioGrid, .testiGrid {
