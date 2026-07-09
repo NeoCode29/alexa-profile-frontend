@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaCalendarAlt, FaUser, FaClock, FaArrowLeft, FaLinkedin, FaWhatsapp, FaFacebook, FaLink } from 'react-icons/fa';
+import { FaCalendarAlt, FaUser, FaEye, FaArrowLeft, FaLinkedin, FaWhatsapp, FaFacebook, FaLink } from 'react-icons/fa';
 import styles from './BlogDetail.module.css';
 import { articlesData } from '../data/mockData';
 
@@ -42,7 +42,7 @@ const BlogDetail = () => {
               <FaUser size={14} style={{ color: 'var(--color-green)' }} /> {authorName}
             </span>
             <span className={styles.metaItem}>
-              <FaClock size={14} style={{ color: 'var(--color-green)' }} /> {article.readTime || '5 min read'}
+              <FaEye size={14} style={{ color: 'var(--color-green)' }} /> {article.views || '1,500 Kali Dibaca'}
             </span>
           </div>
           <h1 className={styles.heroTitle}>{article.title}</h1>

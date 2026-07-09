@@ -129,9 +129,15 @@ const ServiceDetail = () => {
                     <li key={i}><FaCheckCircle className={styles.checkIcon} /> <span>{feat}</span></li>
                   ))}
                 </ul>
-                <Link to="/contact" className={`btn ${pkg.isPopular ? 'btn-primary' : 'btn-outline'}`} style={{ marginTop: 'auto', width: '100%' }}>
+                <a 
+                  href={`https://wa.me/6283870120901?text=${encodeURIComponent('Halo, saya tertarik dengan paket ' + pkg.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`btn ${pkg.isPopular ? 'btn-primary' : 'btn-outline'}`} 
+                  style={{ marginTop: 'auto', width: '100%' }}
+                >
                   Pilih Paket Ini
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
