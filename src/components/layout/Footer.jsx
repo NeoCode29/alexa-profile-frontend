@@ -9,7 +9,7 @@ const Footer = () => {
         
         <div className={styles.brandCol}>
           <div className={styles.logo}>
-            <img src="/logo.png" alt="AG Group" style={{ height: '80px', objectFit: 'contain', marginBottom: '1rem' }} />
+            <img src="/logo.png" alt="AG Group" style={{ height: '80px', objectFit: 'contain', marginBottom: '1rem', filter: 'brightness(0) invert(100%)' }} />
           </div>
           <p className={styles.description}>
             PT. Alexa Computindo Group adalah perusahaan teknologi terkemuka yang menyediakan layanan ISP, Media Massa Digital, dan Pengembangan Perangkat Lunak.
