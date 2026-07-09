@@ -212,32 +212,7 @@ export const testimonials = [
   { name: 'Budi Wibowo', company: 'IT Manager', quote: 'Layanan internet dari InetMedia sangat stabil. Jarang sekali mengalami gangguan, sangat direkomendasikan.' }
 ];
 
-export const careersData = [
-  {
-    id: 1,
-    title: 'Frontend Developer (React)',
-    department: 'WebMedia',
-    location: 'Jakarta, Hybrid',
-    type: 'Full-time',
-    description: 'Kami mencari Frontend Developer berpengalaman untuk membangun antarmuka web modern dengan React dan ekosistem terkait.'
-  },
-  {
-    id: 2,
-    title: 'Network Engineer',
-    department: 'InetMedia',
-    location: 'Jakarta, On-site',
-    type: 'Full-time',
-    description: 'Bergabung dengan tim infrastruktur kami untuk merancang, mengimplementasikan, dan mengelola jaringan enterprise berskala besar.'
-  },
-  {
-    id: 3,
-    title: 'Digital Marketing Specialist',
-    department: 'MediaKampung',
-    location: 'Remote',
-    type: 'Full-time',
-    description: 'Bantu kami menjangkau audiens yang lebih luas melalui strategi pemasaran digital yang inovatif dan berbasis data.'
-  }
-];
+
 
 export const serviceDetailsData = {
   webmedia: {

@@ -34,7 +34,6 @@ const Footer = () => {
           <h3>Perusahaan</h3>
           <ul>
             <li><Link to="/about">Tentang Kami</Link></li>
-            <li><Link to="/careers">Karir</Link></li>
             <li><Link to="/blog">Blog & Berita</Link></li>
           </ul>
         </div>

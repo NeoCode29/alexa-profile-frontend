@@ -25,7 +25,6 @@ const Navbar = () => {
             <li><Link to="/about" className={location.pathname === '/about' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Tentang Kami</Link></li>
             <li><Link to="/services" className={location.pathname === '/services' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Layanan</Link></li>
             <li><Link to="/blog" className={location.pathname === '/blog' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Artikel</Link></li>
-            <li><Link to="/careers" className={location.pathname === '/careers' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Karir</Link></li>
           </ul>
           
           <Link to="/contact" className="btn btn-primary" onClick={() => setIsOpen(false)}>

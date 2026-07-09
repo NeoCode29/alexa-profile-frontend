@@ -1,7 +1,33 @@
-.floatingBtn {
+.floatingContainer {
   position: fixed;
   bottom: 30px;
   right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.waTooltip {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.floatingContainer:hover .waTooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.floatingBtn {
   background-color: #25D366;
   color: white;
   width: 60px;
@@ -11,10 +37,33 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 9999;
   transition: transform 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
 .floatingBtn:hover {
   transform: scale(1.1);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .waTooltip {
+    display: none;
+  }
+  .floatingContainer {
+    bottom: 20px;
+    right: 20px;
+  }
 }
