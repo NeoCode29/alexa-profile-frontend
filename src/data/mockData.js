@@ -41,7 +41,7 @@ export const articlesData = [
     category: 'Teknologi',
     date: '12 Jul 2026',
     author: 'Tim Editorial MediaKampung',
-    readTime: '4 min read',
+    views: '4,102 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
     excerpt: 'Transformasi digital bukan lagi sekadar pilihan, melainkan keharusan bagi UMKM untuk bertahan dan berkembang...',
     content: [
@@ -59,7 +59,7 @@ export const articlesData = [
     category: 'Tips Jaringan',
     date: '08 Jul 2026',
     author: 'Network Engineer InetMedia',
-    readTime: '5 min read',
+    views: '8,421 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80',
     excerpt: 'Koneksi internet yang stabil adalah urat nadi operasional kantor modern. Berikut panduan memilih ISP terbaik...',
     content: [
@@ -76,7 +76,7 @@ export const articlesData = [
     category: 'Desain Web',
     date: '02 Jul 2026',
     author: 'UI/UX Specialist WebMedia',
-    readTime: '4 min read',
+    views: '2,510 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80',
     excerpt: 'Tren desain selalu berputar. Desain geometris dengan warna brand yang kuat kini kembali mendominasi...',
     content: [
@@ -93,7 +93,7 @@ export const articlesData = [
     category: 'Teknologi',
     date: '28 Jun 2026',
     author: 'Tim Keamanan Siber Alexa',
-    readTime: '6 min read',
+    views: '12,045 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80',
     excerpt: 'Dengan semakin canggihnya serangan siber, perusahaan dituntut memiliki keamanan jaringan berlapis...',
     content: [
@@ -111,7 +111,7 @@ export const articlesData = [
     category: 'Software',
     date: '25 Jun 2026',
     author: 'Senior Architect WebMedia',
-    readTime: '5 min read',
+    views: '3,890 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     excerpt: 'Sistem Informasi Manajemen (SIM) yang baik dapat meningkatkan efisiensi kerja tim secara signifikan...',
     content: [
@@ -128,7 +128,7 @@ export const articlesData = [
     category: 'Teknologi',
     date: '20 Jun 2026',
     author: 'Tim Editorial MediaKampung',
-    readTime: '4 min read',
+    views: '9,514 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
     excerpt: 'Adopsi cloud di Indonesia terus meningkat seiring kebutuhan akses data yang lebih cepat dan aman...',
     content: [
@@ -145,7 +145,7 @@ export const articlesData = [
     category: 'Desain Web',
     date: '15 Jun 2026',
     author: 'UI/UX Specialist WebMedia',
-    readTime: '5 min read',
+    views: '6,233 Kali Dibaca',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
     excerpt: 'Mengapa korporasi lebih memilih website custom? Berikut perbandingan mendalam yang perlu Anda ketahui...',
     content: [
