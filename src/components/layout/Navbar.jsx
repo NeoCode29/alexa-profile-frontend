@@ -7,6 +7,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  const handleLinkClick = (path) => {
+    setIsOpen(false);
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={`container ${styles.navContainer}`}>
@@ -21,10 +30,10 @@ const Navbar = () => {
 
         <div className={`${styles.navMenu} ${isOpen ? styles.active : ''}`}>
           <ul className={styles.navLinks}>
-            <li><Link to="/" className={location.pathname === '/' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Beranda</Link></li>
-            <li><Link to="/about" className={location.pathname === '/about' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Tentang Kami</Link></li>
-            <li><Link to="/services" className={location.pathname === '/services' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Layanan</Link></li>
-            <li><Link to="/blog" className={location.pathname === '/blog' ? styles.activeLink : ''} onClick={() => setIsOpen(false)}>Artikel</Link></li>
+            <li><Link to="/" className={location.pathname === '/' ? styles.activeLink : ''} onClick={() => handleLinkClick('/')}>Beranda</Link></li>
+            <li><Link to="/about" className={location.pathname === '/about' ? styles.activeLink : ''} onClick={() => handleLinkClick('/about')}>Tentang Kami</Link></li>
+            <li><Link to="/services" className={location.pathname === '/services' ? styles.activeLink : ''} onClick={() => handleLinkClick('/services')}>Layanan</Link></li>
+            <li><Link to="/blog" className={location.pathname === '/blog' ? styles.activeLink : ''} onClick={() => handleLinkClick('/blog')}>Artikel</Link></li>
           </ul>
           
           <Link to="/contact" className="btn btn-primary" onClick={() => setIsOpen(false)}>

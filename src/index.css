@@ -23,7 +23,11 @@ body {
   color: var(--color-dark);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+#root {
   overflow-x: hidden;
+  position: relative;
 }
 
 a {
@@ -79,6 +83,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-transform: uppercase; /* Corporate solid feel */
   letter-spacing: 1px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .section-title {
@@ -187,3 +193,16 @@ h1, h2, h3, h4, h5, h6 {
 .mt-4 { margin-top: 1rem; }
 .mb-4 { margin-bottom: 1rem; }
 .py-5 { padding-top: 5rem; padding-bottom: 5rem; }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    margin: 1.5rem auto 3rem;
+  }
+}

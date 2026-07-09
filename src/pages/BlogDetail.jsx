@@ -10,10 +10,6 @@ const BlogDetail = () => {
   // Find current article or fallback to first
   const article = articlesData.find(a => a.id === Number(articleId)) || articlesData[0];
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [articleId]);
-
   // Related articles (exclude current, take top 4)
   const relatedArticles = articlesData
     .filter(a => a.id !== article.id)
