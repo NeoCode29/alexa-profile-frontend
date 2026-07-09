@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPlus, FaMinus } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 import styles from './Contact.module.css';
 
 const Contact = () => {
@@ -23,7 +24,14 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Pesan berhasil terkirim. Representatif kami akan segera menghubungi Anda.');
+    Swal.fire({
+      title: 'Pesan Terkirim!',
+      text: 'Terima kasih, representatif kami akan segera menghubungi Anda.',
+      icon: 'success',
+      confirmButtonColor: '#3BAE7C',
+      background: '#1E293B',
+      color: '#fff'
+    });
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 

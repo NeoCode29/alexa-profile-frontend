@@ -9,7 +9,7 @@ import ServiceDetail from './pages/ServiceDetail';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Contact from './pages/Contact';
-import Careers from './pages/Careers';
+import NotFound from './pages/NotFound';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ const AnimatedRoutes = () => {
         <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
         <Route path="/blog/:articleId" element={<PageTransition><BlogDetail /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
