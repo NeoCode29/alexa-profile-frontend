@@ -158,6 +158,14 @@ export const articlesData = [
   }
 ];
 
+// Duplicate articles for pagination demo
+const extraArticles = Array.from({ length: 14 }).map((_, i) => ({
+  ...articlesData[i % 7],
+  id: 8 + i,
+  title: `${articlesData[i % 7].title} (Bagian ${Math.floor(i/7) + 2})`
+}));
+articlesData.push(...extraArticles);
+
 export const teamData = [
   {
     id: 1,

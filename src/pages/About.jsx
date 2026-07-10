@@ -41,7 +41,7 @@ const About = () => {
           <div className={styles.historyGrid}>
             <motion.div className={styles.historyText} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <h2 className="section-title">Sejarah Perusahaan</h2>
-              <div className={styles.divider}></div>
+              <div style={{ height: '3rem' }}></div>
               <p>Berdiri pada tahun 2018, kami memulai langkah sebagai perusahaan pengembangan perangkat lunak yang melayani sektor korporat (B2B). Melihat kebutuhan infrastruktur yang terintegrasi, kami berekspansi secara agresif.</p>
               <p>Hingga kini, struktur grup kami menaungi tiga divisi utama yang beroperasi secara sinergis: <strong>MediaKampung</strong> (Media), <strong>InetMedia</strong> (ISP), dan <strong>WebMedia</strong> (Pengembangan Perangkat Lunak).</p>
             </motion.div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaArrowRight } from 'react-icons/fa';
 import styles from './Blog.module.css';
@@ -7,6 +7,13 @@ import { articlesData } from '../data/mockData';
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 6;
+
+  // Reset page when search or category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, activeCategory]);
 
   const categories = ['All', ...new Set(articlesData.map(a => a.category))];
 
@@ -15,6 +22,18 @@ const Blog = () => {
     const matchesCategory = activeCategory === 'All' || article.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+  const paginate = (pageNumber) => {
+    if (pageNumber > 0 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className={styles.blogWrapper}>
@@ -63,8 +82,8 @@ const Blog = () => {
 
           <main className={styles.mainContent}>
             <div className={styles.articlesGrid}>
-              {filteredArticles.length > 0 ? (
-                filteredArticles.map(article => (
+              {currentArticles.length > 0 ? (
+                currentArticles.map(article => (
                   <div key={article.id} className={`${styles.articleCard} sharp-box`}>
                     <Link to={`/blog/${article.id}`} className={styles.articleImgWrapper}>
                       <img src={article.image} alt={article.title} />
@@ -88,11 +107,35 @@ const Blog = () => {
               )}
             </div>
 
-            {filteredArticles.length > 0 && (
+            {totalPages > 1 && (
               <div className={styles.pagination}>
-                <button className={`${styles.pageBtn} ${styles.pageActive}`}>1</button>
-                <button className={styles.pageBtn}>2</button>
-                <button className={styles.pageBtn}>&gt;</button>
+                <button 
+                  className={styles.pageBtn} 
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
+                >
+                  &lt;
+                </button>
+                
+                {[...Array(totalPages)].map((_, i) => (
+                  <button 
+                    key={i + 1}
+                    className={`${styles.pageBtn} ${currentPage === i + 1 ? styles.pageActive : ''}`}
+                    onClick={() => paginate(i + 1)}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+
+                <button 
+                  className={styles.pageBtn} 
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}
+                >
+                  &gt;
+                </button>
               </div>
             )}
           </main>
