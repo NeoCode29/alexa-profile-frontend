@@ -15,6 +15,19 @@ const BlogDetail = () => {
     .filter(a => a.id !== article.id)
     .slice(0, 4);
 
+  useEffect(() => {
+    if (article) {
+      document.title = `${article.metaTitle || article.title} | Alexa Group`;
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.content = article.metaDescription || article.excerpt || '';
+    }
+  }, [article]);
+
   const handleShareCopy = () => {
     navigator.clipboard.writeText(window.location.href);
     alert('Tautan artikel berhasil disalin ke clipboard!');
