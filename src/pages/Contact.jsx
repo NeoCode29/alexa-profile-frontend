@@ -13,11 +13,11 @@ const Contact = () => {
       a: 'Kantor pusat kami berlokasi di Jl. Teknologi No. 45, Jakarta Selatan. Kami melayani kunjungan klien enterprise pada hari kerja (Senin - Jumat), pukul 09:00 - 17:00 WIB.'
     },
     {
-      q: 'Apakah layanan pengembangan software (Swakarya) termasuk maintenance?',
-      a: 'Ya, seluruh proyek perangkat lunak dari Swakarya memiliki SLA dan masa maintenance mulai dari 3 hingga 12 bulan, yang dapat diperpanjang melalui kontrak support enterprise.'
+      q: 'Apakah layanan pengembangan software (WebMedia) termasuk maintenance?',
+      a: 'Ya, seluruh proyek perangkat lunak dari WebMedia memiliki SLA dan masa maintenance mulai dari 3 hingga 12 bulan, yang dapat diperpanjang melalui kontrak support enterprise.'
     },
     {
-      q: 'Berapa lama proses pemasangan internet corporate NetMedia?',
+      q: 'Berapa lama proses pemasangan internet corporate InetMedia?',
       a: 'Proses survei, penarikan kabel fiber optik, dan aktivasi internet khusus corporate rata-rata memakan waktu 3-5 hari kerja setelah SPK disetujui.'
     }
   ];
