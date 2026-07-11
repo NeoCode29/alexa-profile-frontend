@@ -18,5 +18,30 @@ export const usePageContent = (pageName, defaultData) => {
       });
   }, [pageName]);
 
+  useEffect(() => {
+    if (!content) return;
+    if (content.seoTitle) {
+      document.title = content.seoTitle;
+    }
+    if (content.seoDescription) {
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.content = content.seoDescription;
+    }
+    if (content.seoKeywords) {
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = 'keywords';
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.content = content.seoKeywords;
+    }
+  }, [content]);
+
   return content;
 };

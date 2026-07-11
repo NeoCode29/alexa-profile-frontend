@@ -5,13 +5,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 // import Marquee from 'react-fast-marquee';
 import styles from './Home.module.css';
 import { servicesData, clientsData, articlesData } from '../data/mockData';
+import { usePageContent } from '../hooks/usePageContent';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
+const defaultHomeData = {
+  heroTitleLine1: "Membangun Infrastruktur",
+  heroTitleHighlight: "Digital Masa Depan",
+  heroDesc: "PT. Alexa Computindo Group menyediakan solusi Media Digital, ISP Berkecepatan Tinggi, dan Arsitektur Perangkat Lunak untuk skala Enterprise.",
+  ctaPrimaryText: "Eksplorasi Layanan",
+  ctaPrimaryLink: "/services",
+  ctaSecondaryText: "Pelajari Lebih Lanjut",
+  ctaSecondaryLink: "/about",
+  introTitle: "Fundamen Solid. Inovasi Tanpa Henti.",
+  introDesc: "Didirikan sejak tahun 2018, kami telah bertransformasi dari pengembang perangkat lunak independen menjadi raksasa teknologi dengan tiga pilar utama. Kami tidak sekadar beradaptasi dengan perubahan digital; kami yang menciptakannya.",
+  stat1Number: "8+",
+  stat1Label: "Tahun Pengalaman",
+  stat2Number: "99.9%",
+  stat2Label: "Uptime Server",
+  stat3Number: "200+",
+  stat3Label: "Klien Enterprise",
+  servicesSectionTitle: "Divisi Utama Kami",
+  servicesSectionSubtitle: "Tiga pilar strategis yang menggerakkan ekosistem digital kami.",
+  clientsSectionTitle: "DIPERCAYA OLEH PERUSAHAAN TERKEMUKA",
+  articlesSectionTitle: "Berita & Insight"
+};
+
 const Home = () => {
+  const pageData = usePageContent('home', defaultHomeData);
   const heroImages = [
     "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80",
     "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
@@ -49,11 +73,11 @@ const Home = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className={styles.heroTitle}>
-              Membangun Infrastruktur <br />
-              <span className={styles.textHighlight}>Digital Masa Depan</span>
+              {pageData.heroTitleLine1} <br />
+              <span className={styles.textHighlight}>{pageData.heroTitleHighlight}</span>
             </h1>
             <p className={styles.heroDesc}>
-              PT. Alexa Computindo Group menyediakan solusi Media Digital, ISP Berkecepatan Tinggi, dan Arsitektur Perangkat Lunak untuk skala Enterprise.
+              {pageData.heroDesc}
             </p>
             <div className={styles.heroActions}>
               <Link to="/services" className="btn btn-primary">
@@ -108,24 +132,23 @@ const Home = () => {
               whileInView="visible"
               viewport={{ once: true, delay: 0.2 }}
             >
-              <h2 className={styles.introTitle}>Fundamen Solid.<br/>Inovasi Tanpa Henti.</h2>
+              <h2 className={styles.introTitle} style={{ whiteSpace: 'pre-line' }}>{pageData.introTitle}</h2>
               <div className={styles.divider}></div>
               <p>
-                Didirikan sejak tahun 2018, kami telah bertransformasi dari pengembang perangkat lunak independen menjadi raksasa teknologi dengan tiga pilar utama. 
-                Kami tidak sekadar beradaptasi dengan perubahan digital; kami yang menciptakannya.
+                {pageData.introDesc}
               </p>
               <div className={styles.statsGrid}>
                 <div className={styles.statBox}>
-                  <h3>8+</h3>
-                  <span>Tahun Pengalaman</span>
+                  <h3>{pageData.stat1Number}</h3>
+                  <span>{pageData.stat1Label}</span>
                 </div>
                 <div className={styles.statBox}>
-                  <h3>99.9%</h3>
-                  <span>Uptime Server</span>
+                  <h3>{pageData.stat2Number}</h3>
+                  <span>{pageData.stat2Label}</span>
                 </div>
                 <div className={styles.statBox}>
-                  <h3>200+</h3>
-                  <span>Klien Enterprise</span>
+                  <h3>{pageData.stat3Number}</h3>
+                  <span>{pageData.stat3Label}</span>
                 </div>
               </div>
             </motion.div>
@@ -136,8 +159,8 @@ const Home = () => {
       {/* Services Section */}
       <section className={styles.servicesSection}>
         <div className="container text-center">
-          <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-title">Divisi Utama Kami</motion.h2>
-          <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-subtitle">Tiga pilar strategis yang menggerakkan ekosistem digital kami.</motion.p>
+          <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-title">{pageData.servicesSectionTitle}</motion.h2>
+          <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-subtitle">{pageData.servicesSectionSubtitle}</motion.p>
           
           <div className={styles.servicesGrid}>
             {servicesData.map((service, idx) => (
@@ -169,7 +192,7 @@ const Home = () => {
       <section className={styles.clientsSection}>
         <div className="container">
           <p className="text-center" style={{ color: 'var(--color-dark)', fontWeight: 700, letterSpacing: '2px', marginBottom: '3rem' }}>
-            DIPERCAYA OLEH PERUSAHAAN TERKEMUKA
+            {pageData.clientsSectionTitle}
           </p>
           <div className={styles.marqueeContainer}>
             <div className={styles.marqueeTrack}>
@@ -188,7 +211,7 @@ const Home = () => {
       <section className={`${styles.articlesSection} clip-diagonal-top`}>
         <div className="container">
           <div className={styles.articlesHeader}>
-            <h2 className="section-title" style={{ margin: 0, color: 'var(--color-white)' }}>Berita & Insight</h2>
+            <h2 className="section-title" style={{ margin: 0, color: 'var(--color-white)' }}>{pageData.articlesSectionTitle}</h2>
             <Link to="/blog" className="btn btn-primary" style={{ backgroundColor: 'var(--color-white)', color: 'var(--color-dark)' }}>Lihat Semua</Link>
           </div>
           

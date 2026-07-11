@@ -16,6 +16,15 @@ export const useServices = () => {
             let portfoliosArray = [];
             let testimonialsArray = [];
             try { featuresArray = typeof svc.features === 'string' ? JSON.parse(svc.features) : (svc.features || []); } catch (e) {}
+            featuresArray = (Array.isArray(featuresArray) ? featuresArray : []).map(f => {
+              if (typeof f === 'string') {
+                const parts = f.split('|');
+                return parts.length > 1
+                  ? { title: parts[0].trim(), desc: parts.slice(1).join('|').trim() }
+                  : { title: f.trim(), desc: '' };
+              }
+              return typeof f === 'object' && f !== null ? { title: f.title || '', desc: f.desc || '' } : { title: '', desc: '' };
+            });
             try { portfoliosArray = typeof svc.portfolios === 'string' ? JSON.parse(svc.portfolios) : (svc.portfolios || []); } catch (e) {}
             try { testimonialsArray = typeof svc.testimonials === 'string' ? JSON.parse(svc.testimonials) : (svc.testimonials || []); } catch (e) {}
             return {
