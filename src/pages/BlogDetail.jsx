@@ -23,6 +23,18 @@ const BlogDetail = () => {
     }
   }, [article]);
 
+  useEffect(() => {
+    if (article) {
+      const viewKey = `viewed_article_${article.id}`;
+      if (!sessionStorage.getItem(viewKey)) {
+        import('../services/api').then(({ fetchApi }) => {
+          fetchApi(`/articles/${article.id}/view`, { method: 'POST' });
+          sessionStorage.setItem(viewKey, 'true');
+        });
+      }
+    }
+  }, [article]);
+
   if (detailLoading || allLoading || !article) {
     return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
   }
