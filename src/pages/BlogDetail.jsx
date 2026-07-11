@@ -2,17 +2,21 @@ import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaCalendarAlt, FaUser, FaEye, FaArrowLeft, FaLinkedin, FaWhatsapp, FaFacebook, FaLink } from 'react-icons/fa';
 import styles from './BlogDetail.module.css';
-import { articlesData } from '../data/mockData';
+import { useArticles } from '../hooks/useArticles';
 
 const BlogDetail = () => {
   const { articleId } = useParams();
   
-  // Find current article or fallback to first
-  const article = articlesData.find(a => a.id === Number(articleId)) || articlesData[0];
+  const { articleDetail: article, loading: detailLoading } = useArticles(null, null, articleId);
+  const { articles: allArticles, loading: allLoading } = useArticles();
+
+  if (detailLoading || allLoading || !article) {
+    return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
+  }
 
   // Related articles (exclude current, take top 4)
-  const relatedArticles = articlesData
-    .filter(a => a.id !== article.id)
+  const relatedArticles = (allArticles || [])
+    .filter(a => a.id !== article.id && a.slug !== article.slug)
     .slice(0, 4);
 
   const handleShareCopy = () => {
@@ -32,7 +36,7 @@ const BlogDetail = () => {
           <div className={styles.metaRow}>
             <span className={`${styles.categoryBadge} sharp-box`}>{article.category}</span>
             <span className={styles.metaItem}>
-              <FaCalendarAlt size={14} style={{ color: 'var(--color-green)' }} /> {article.date}
+              <FaCalendarAlt size={14} style={{ color: 'var(--color-green)' }} /> {new Date(article.date || article.createdAt).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})}
             </span>
             <span className={styles.metaItem}>
               <FaUser size={14} style={{ color: 'var(--color-green)' }} /> {authorName}
@@ -52,23 +56,27 @@ const BlogDetail = () => {
           {/* Main Article Body */}
           <main className={`${styles.mainArticle} sharp-box`}>
             <div className={`${styles.featuredImageWrapper} sharp-box`}>
-              <img src={article.image} alt={article.title} className={styles.featuredImage} />
+              <img src={article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image} alt={article.title} className={styles.featuredImage} />
             </div>
 
             <div className={styles.articleBody}>
               {article.content ? (
-                article.content.map((paragraph, idx) => {
-                  if (paragraph.startsWith('## ')) {
-                    return <h2 key={idx}>{paragraph.replace('## ', '')}</h2>;
-                  }
-                  if (paragraph.startsWith('### ')) {
-                    return <h3 key={idx}>{paragraph.replace('### ', '')}</h3>;
-                  }
-                  if (paragraph.startsWith('> ')) {
-                    return <blockquote key={idx}>{paragraph.replace('> ', '').replace(/"/g, '"')}</blockquote>;
-                  }
-                  return <p key={idx}>{paragraph}</p>;
-                })
+                Array.isArray(article.content) ? (
+                  article.content.map((paragraph, idx) => {
+                    if (paragraph.startsWith('## ')) {
+                      return <h2 key={idx}>{paragraph.replace('## ', '')}</h2>;
+                    }
+                    if (paragraph.startsWith('### ')) {
+                      return <h3 key={idx}>{paragraph.replace('### ', '')}</h3>;
+                    }
+                    if (paragraph.startsWith('> ')) {
+                      return <blockquote key={idx}>{paragraph.replace('> ', '').replace(/"/g, '"')}</blockquote>;
+                    }
+                    return <p key={idx}>{paragraph}</p>;
+                  })
+                ) : (
+                  <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                )
               ) : (
                 <p>{article.excerpt}</p>
               )}
@@ -142,13 +150,13 @@ const BlogDetail = () => {
               <h3>Artikel Terkait</h3>
               <div className={styles.relatedList}>
                 {relatedArticles.map(rel => (
-                  <Link key={rel.id} to={`/blog/${rel.id}`} className={styles.relatedItem}>
+                  <Link key={rel.slug || rel.id} to={`/blog/${rel.slug || rel.id}`} className={styles.relatedItem}>
                     <div className={`${styles.relatedImgWrapper} sharp-box`}>
-                      <img src={rel.image} alt={rel.title} className={styles.relatedImg} />
+                      <img src={rel.image?.includes('uploads/') ? `http://localhost:4000${rel.image.startsWith('/') ? '' : '/'}${rel.image}` : rel.image} alt={rel.title} className={styles.relatedImg} />
                     </div>
                     <div className={styles.relatedInfo}>
                       <h5 className={styles.relatedTitle}>{rel.title}</h5>
-                      <span className={styles.relatedDate}>{rel.date}</span>
+                      <span className={styles.relatedDate}>{new Date(rel.date || rel.createdAt).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})}</span>
                     </div>
                   </Link>
                 ))}

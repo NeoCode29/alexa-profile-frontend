@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaCheckCircle, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import styles from './ServiceDetail.module.css';
-import { serviceDetailsData } from '../data/mockData';
+import { useServices } from '../hooks/useServices';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
@@ -12,7 +12,11 @@ const fadeUp = {
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
-  const service = serviceDetailsData[serviceId];
+  const { serviceDetail: service, loading } = useServices(serviceId);
+
+  if (loading) {
+    return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
+  }
 
   if (!service) {
     return (
@@ -80,7 +84,7 @@ const ServiceDetail = () => {
             </motion.div>
 
             <div className={styles.featuresGrid}>
-              {service.features.map((feat, idx) => (
+              {service.features && service.features.map((feat, idx) => (
                 <motion.div 
                   key={idx} 
                   className={`${styles.featureCard} sharp-box`}
@@ -90,8 +94,8 @@ const ServiceDetail = () => {
                   transition={{ delay: idx * 0.15, duration: 0.5 }}
                 >
                   <div className={styles.featureNumber}>0{idx + 1}</div>
-                  <h3>{feat.title}</h3>
-                  <p>{feat.desc}</p>
+                  <h3>{feat.title || feat}</h3>
+                  <p>{feat.desc || ''}</p>
                 </motion.div>
               ))}
             </div>
@@ -108,7 +112,7 @@ const ServiceDetail = () => {
           </motion.div>
 
           <div className={styles.pricingGrid}>
-            {service.pricing.map((pkg, idx) => (
+            {service.packages && service.packages.map((pkg, idx) => (
               <motion.div 
                 key={idx} 
                 className={`${styles.pricingCard} ${pkg.isPopular ? styles.popular : ''} sharp-box`}
@@ -121,7 +125,7 @@ const ServiceDetail = () => {
                 <h3>{pkg.name}</h3>
                 <div className={styles.price}>{pkg.price}</div>
                 <ul className={styles.featureList}>
-                  {pkg.features.map((feat, i) => (
+                  {pkg.features && pkg.features.map((feat, i) => (
                     <li key={i}><FaCheckCircle className={styles.checkIcon} /> <span>{feat}</span></li>
                   ))}
                 </ul>
@@ -149,7 +153,7 @@ const ServiceDetail = () => {
           </motion.div>
 
           <div className={styles.portfolioGrid}>
-            {service.portfolios.map((item, idx) => (
+            {service.portfolios && service.portfolios.map((item, idx) => (
               <motion.div 
                 key={idx} 
                 className={`${styles.portfolioCard} sharp-box`}
@@ -159,11 +163,11 @@ const ServiceDetail = () => {
                 transition={{ delay: idx * 0.15, duration: 0.5 }}
               >
                 <div className={styles.portfolioImgWrapper}>
-                  <img src={item.image} alt={item.title} />
+                  <img src={item.image?.includes('uploads/') ? `http://localhost:4000${item.image.startsWith('/') ? '' : '/'}${item.image}` : item.image} alt={item.title} />
                 </div>
                 <div className={styles.portfolioContent} style={{ textAlign: 'left' }}>
                   <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
+                  <p>{item.client || item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -179,7 +183,7 @@ const ServiceDetail = () => {
           </motion.div>
 
           <div className={styles.testiGrid}>
-            {service.testimonials.map((testi, idx) => (
+            {service.testimonials && service.testimonials.map((testi, idx) => (
               <motion.div 
                 key={idx} 
                 className={`${styles.testiCard} sharp-box`}
@@ -190,8 +194,8 @@ const ServiceDetail = () => {
               >
                 <p className={styles.testiQuote}>"{testi.quote}"</p>
                 <div className={styles.testiAuthor}>
-                  <h4>{testi.name}</h4>
-                  <span>{testi.company}</span>
+                  <h4>{testi.author || testi.name}</h4>
+                  <span>{testi.role || testi.company}</span>
                 </div>
               </motion.div>
             ))}

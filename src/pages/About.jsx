@@ -1,7 +1,8 @@
 import { FaEye, FaBullseye } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
-import { teamData } from '../data/mockData';
+import { usePageContent } from '../hooks/usePageContent';
+import { teamData as fallbackTeamData } from '../data/mockData';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
@@ -9,6 +10,23 @@ const fadeUp = {
 };
 
 const About = () => {
+  const { data: pageData, loading } = usePageContent('about');
+
+  if (loading || !pageData) {
+    return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
+  }
+
+  const safeParse = (data, fallback) => {
+    if (typeof data === 'string') {
+      try { return JSON.parse(data); } catch(e) { return fallback; }
+    }
+    return data || fallback;
+  };
+
+  const timelineList = safeParse(pageData.timelineList, []);
+  const missionList = safeParse(pageData.missionList, []);
+  const teamList = safeParse(pageData.teamList, fallbackTeamData);
+
   return (
     <div className={styles.aboutWrapper}>
       
@@ -21,7 +39,7 @@ const About = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            TENTANG KAMI
+            {pageData.heroTitle}
           </motion.h1>
           <motion.p 
             className={styles.heroDesc}
@@ -40,33 +58,26 @@ const About = () => {
         <div className="container">
           <div className={styles.historyGrid}>
             <motion.div className={styles.historyText} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <h2 className="section-title">Sejarah Perusahaan</h2>
+              <h2 className="section-title">{pageData.historyTitle}</h2>
               <div style={{ height: '3rem' }}></div>
-              <p>Berdiri pada tahun 2018, kami memulai langkah sebagai perusahaan pengembangan perangkat lunak yang melayani sektor korporat (B2B). Melihat kebutuhan infrastruktur yang terintegrasi, kami berekspansi secara agresif.</p>
-              <p>Hingga kini, struktur grup kami menaungi tiga divisi utama yang beroperasi secara sinergis: <strong>MediaKampung</strong> (Media), <strong>InetMedia</strong> (ISP), dan <strong>WebMedia</strong> (Pengembangan Perangkat Lunak).</p>
+              <p>{pageData.historyPar1}</p>
+              {pageData.historyPar2 && <p>{pageData.historyPar2}</p>}
             </motion.div>
             
             <div className={styles.historyTimeline}>
-              {['2018', '2020', '2023'].map((year, idx) => (
+              {timelineList.map((item, idx) => (
                 <motion.div 
-                  key={year}
+                  key={item.year}
                   className={styles.timelineBox}
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.2, duration: 0.5 }}
                 >
-                  <div className={styles.timelineYear}>{year}</div>
+                  <div className={styles.timelineYear}>{item.year}</div>
                   <div className={styles.timelineContent}>
-                    {year === '2018' && (
-                      <><h3>Pendirian WebMedia</h3><p>Fokus awal pada arsitektur sistem informasi enterprise.</p></>
-                    )}
-                    {year === '2020' && (
-                      <><h3>Ekspansi InetMedia</h3><p>Memperoleh lisensi ISP nasional untuk infrastruktur jaringan.</p></>
-                    )}
-                    {year === '2023' && (
-                      <><h3>Akuisisi MediaKampung</h3><p>Membentuk pilar media digital yang kuat.</p></>
-                    )}
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -88,7 +99,7 @@ const About = () => {
                 <FaEye size={40} className={styles.vmIcon} />
                 <h3>Visi</h3>
               </div>
-              <p>Menjadi grup perusahaan teknologi terdepan di Asia Tenggara yang memberikan dampak nyata melalui infrastruktur digital yang inklusif, handal, dan inovatif.</p>
+              <p>{pageData.visionText}</p>
             </motion.div>
 
             <motion.div 
@@ -100,10 +111,7 @@ const About = () => {
                 <h3>Misi</h3>
               </div>
               <ul className={styles.vmList}>
-                <li>Membangun infrastruktur jaringan internet dengan skalabilitas tinggi.</li>
-                <li>Menyajikan jurnalisme digital yang kredibel dan berwawasan.</li>
-                <li>Mengembangkan arsitektur perangkat lunak berstandar global.</li>
-                <li>Menjaga tata kelola perusahaan yang bersih dan profesional.</li>
+                {missionList.map((m, idx) => <li key={idx}>{m}</li>)}
               </ul>
             </motion.div>
 
@@ -114,9 +122,9 @@ const About = () => {
       {/* Team */}
       <section className={styles.teamSection}>
         <div className="container text-center">
-          <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-title">Manajemen Inti</motion.h2>
+          <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="section-title">{pageData.teamSectionTitle}</motion.h2>
           <div className={styles.teamGrid}>
-            {teamData.map((member, idx) => (
+            {teamList.map((member, idx) => (
               <motion.div 
                 key={member.id} 
                 className={`${styles.teamCard} sharp-box`}
@@ -126,7 +134,7 @@ const About = () => {
                 transition={{ delay: idx * 0.15, duration: 0.4 }}
               >
                 <div className={styles.teamImgWrapper}>
-                  <img src={member.image} alt={member.name} />
+                  <img src={member.image?.includes('uploads/') ? `http://localhost:4000${member.image.startsWith('/') ? '' : '/'}${member.image}` : member.image} alt={member.name} />
                   <div className={styles.teamHover}>
                     <p>{member.bio}</p>
                   </div>
