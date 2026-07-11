@@ -118,8 +118,7 @@
   border-radius: 8px;
 }
 
-.articleBody h2 {
-  font-size: 1.6rem;
+.articleBody h1, .articleBody h2, .articleBody h3, .articleBody h4, .articleBody h5, .articleBody h6 {
   color: var(--color-dark);
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
@@ -128,12 +127,12 @@
   padding-bottom: 8px;
 }
 
-.articleBody h3 {
-  font-size: 1.3rem;
-  color: var(--color-dark);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
+.articleBody h1 { font-size: 2rem; }
+.articleBody h2 { font-size: 1.6rem; }
+.articleBody h3 { font-size: 1.3rem; }
+.articleBody h4 { font-size: 1.15rem; }
+.articleBody h5 { font-size: 1.05rem; }
+.articleBody h6 { font-size: 1rem; }
 
 .articleBody blockquote {
   border-left: 4px solid var(--color-green);
