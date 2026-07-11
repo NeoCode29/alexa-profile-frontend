@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaArrowRight } from 'react-icons/fa';
 import styles from './Blog.module.css';
-import { articlesData } from '../data/mockData';
+import { useArticles } from '../hooks/useArticles';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
+  const { articles, loading } = useArticles();
 
   // Reset page when search or category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, activeCategory]);
 
-  const categories = ['All', ...new Set(articlesData.map(a => a.category))];
+  const categories = ['All', ...new Set((articles || []).map(a => a.category))];
 
-  const filteredArticles = articlesData.filter(article => {
+  const filteredArticles = (articles || []).filter(article => {
     const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = activeCategory === 'All' || article.category === activeCategory;
     return matchesSearch && matchesCategory;
@@ -34,6 +35,10 @@ const Blog = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  if (loading) {
+    return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
+  }
 
   return (
     <div className={styles.blogWrapper}>
@@ -84,17 +89,17 @@ const Blog = () => {
             <div className={styles.articlesGrid}>
               {currentArticles.length > 0 ? (
                 currentArticles.map(article => (
-                  <div key={article.id} className={`${styles.articleCard} sharp-box`}>
-                    <Link to={`/blog/${article.id}`} className={styles.articleImgWrapper}>
-                      <img src={article.image} alt={article.title} />
+                  <div key={article.slug || article.id} className={`${styles.articleCard} sharp-box`}>
+                    <Link to={`/blog/${article.slug || article.id}`} className={styles.articleImgWrapper}>
+                      <img src={article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image} alt={article.title} />
                       <div className={styles.articleCategory}>{article.category}</div>
                     </Link>
                     <div className={styles.articleContent}>
-                      <span className={styles.articleDate}>{article.date}</span>
-                      <Link to={`/blog/${article.id}`}>
+                      <span className={styles.articleDate}>{new Date(article.date || article.createdAt).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})}</span>
+                      <Link to={`/blog/${article.slug || article.id}`}>
                         <h3>{article.title}</h3>
                       </Link>
-                      <Link to={`/blog/${article.id}`} className={styles.readMore}>
+                      <Link to={`/blog/${article.slug || article.id}`} className={styles.readMore}>
                         Baca <FaArrowRight size={12} />
                       </Link>
                     </div>

@@ -1,46 +1,66 @@
 import { useState, useEffect } from 'react';
-import { servicesData as fallbackServicesData } from '../data/mockData';
+import { fetchApi } from '../services/api';
+import { servicesData, serviceDetailsData } from '../data/mockData';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
-
-export const useServices = () => {
-  const [services, setServices] = useState(fallbackServicesData);
+export function useServices(serviceId = null) {
+  const [services, setServices] = useState(null);
+  const [serviceDetail, setServiceDetail] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/services`)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-          const parsed = json.data.map((svc) => {
-            let featuresArray = [];
-            let portfoliosArray = [];
-            let testimonialsArray = [];
-            try { featuresArray = typeof svc.features === 'string' ? JSON.parse(svc.features) : (svc.features || []); } catch (e) {}
-            featuresArray = (Array.isArray(featuresArray) ? featuresArray : []).map(f => {
-              if (typeof f === 'string') {
-                const parts = f.split('|');
-                return parts.length > 1
-                  ? { title: parts[0].trim(), desc: parts.slice(1).join('|').trim() }
-                  : { title: f.trim(), desc: '' };
-              }
-              return typeof f === 'object' && f !== null ? { title: f.title || '', desc: f.desc || '' } : { title: '', desc: '' };
-            });
-            try { portfoliosArray = typeof svc.portfolios === 'string' ? JSON.parse(svc.portfolios) : (svc.portfolios || []); } catch (e) {}
-            try { testimonialsArray = typeof svc.testimonials === 'string' ? JSON.parse(svc.testimonials) : (svc.testimonials || []); } catch (e) {}
-            return {
-              ...svc,
-              features: featuresArray,
-              portfolios: portfoliosArray,
-              testimonials: testimonialsArray
-            };
+    async function loadServices() {
+      setLoading(true);
+      if (serviceId) {
+        const res = await fetchApi(`/services/${serviceId}`);
+        if (res.success && res.data) {
+          // Parse JSON strings if needed based on API docs
+          const parsedData = { ...res.data };
+          
+          // Parse top-level JSON fields
+          const jsonFields = ['features', 'portfolios', 'testimonials', 'packages'];
+          jsonFields.forEach(field => {
+            if (typeof parsedData[field] === 'string') {
+              try { parsedData[field] = JSON.parse(parsedData[field]); } catch(e) { parsedData[field] = []; }
+            }
           });
-          setServices(parsed);
-        }
-      })
-      .catch(() => {
-        // Fallback to static mockData if API offline
-      });
-  }, []);
 
-  return services;
-};
+          // Parse features inside packages if it's an array
+          if (Array.isArray(parsedData.packages)) {
+            parsedData.packages = parsedData.packages.map(pkg => {
+              if (typeof pkg.features === 'string') {
+                try { pkg.features = JSON.parse(pkg.features); } catch(e) { pkg.features = []; }
+              }
+              return pkg;
+            });
+          }
+
+          // In ServiceDetail.jsx, 'name' is expected but backend might return 'title'
+          if (parsedData.title && !parsedData.name) {
+            parsedData.name = parsedData.title;
+          }
+          if (parsedData.subtitle && !parsedData.tagline) {
+            parsedData.tagline = parsedData.subtitle;
+          }
+
+          setServiceDetail(parsedData);
+        } else {
+          console.warn(`Failed to fetch service detail for ${serviceId}, using fallback.`);
+          setServiceDetail(serviceDetailsData[serviceId]);
+        }
+      } else {
+        const res = await fetchApi('/services');
+        if (res.success && res.data) {
+          setServices(res.data);
+        } else {
+          console.warn('Failed to fetch services, using fallback.');
+          setServices(servicesData);
+        }
+      }
+      setLoading(false);
+    }
+    loadServices();
+  }, [serviceId]);
+
+  return { services, serviceDetail, loading, error };
+}
