@@ -60,8 +60,14 @@ const About = () => {
             <motion.div className={styles.historyText} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <h2 className="section-title">{pageData.historyTitle}</h2>
               <div style={{ height: '3rem' }}></div>
-              <p>{pageData.historyPar1}</p>
-              {pageData.historyPar2 && <p>{pageData.historyPar2}</p>}
+              {pageData.historyContent ? (
+                <div dangerouslySetInnerHTML={{ __html: pageData.historyContent }} />
+              ) : (
+                <>
+                  <p>{pageData.historyPar1}</p>
+                  {pageData.historyPar2 && <p>{pageData.historyPar2}</p>}
+                </>
+              )}
             </motion.div>
             
             <div className={styles.historyTimeline}>
@@ -99,7 +105,7 @@ const About = () => {
                 <FaEye size={40} className={styles.vmIcon} />
                 <h3>Visi</h3>
               </div>
-              <p>{pageData.visionText}</p>
+              <div dangerouslySetInnerHTML={{ __html: pageData.visionText }} />
             </motion.div>
 
             <motion.div 
@@ -110,9 +116,13 @@ const About = () => {
                 <FaBullseye size={40} className={styles.vmIcon} />
                 <h3>Misi</h3>
               </div>
-              <ul className={styles.vmList}>
-                {missionList.map((m, idx) => <li key={idx}>{m}</li>)}
-              </ul>
+              {pageData.missionRichText ? (
+                <div dangerouslySetInnerHTML={{ __html: pageData.missionRichText }} />
+              ) : (
+                <ul className={styles.vmList}>
+                  {missionList.map((m, idx) => <li key={idx}>{m}</li>)}
+                </ul>
+              )}
             </motion.div>
 
           </div>
