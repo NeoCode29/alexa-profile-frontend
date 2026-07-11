@@ -69,7 +69,7 @@ const BlogDetail = () => {
           {/* Main Article Body */}
           <main className={`${styles.mainArticle} sharp-box`}>
             <div className={`${styles.featuredImageWrapper} sharp-box`}>
-              <img src={article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image} alt={article.title} className={styles.featuredImage} />
+              <img src={article.image?.startsWith('http') ? article.image : (article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image)} alt={article.title} className={styles.featuredImage} />
             </div>
 
             <div className={styles.articleBody}>

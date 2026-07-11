@@ -91,7 +91,7 @@ const Blog = () => {
                 currentArticles.map(article => (
                   <div key={article.slug || article.id} className={`${styles.articleCard} sharp-box`}>
                     <Link to={`/blog/${article.slug || article.id}`} className={styles.articleImgWrapper}>
-                      <img src={article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image} alt={article.title} />
+                      <img src={article.image?.startsWith('http') ? article.image : (article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image)} alt={article.title} />
                       <div className={styles.articleCategory}>{article.category}</div>
                     </Link>
                     <div className={styles.articleContent}>
