@@ -51,7 +51,19 @@ export function useServices(serviceId = null) {
       } else {
         const res = await fetchApi('/services');
         if (res.success && res.data) {
-          setServices(res.data);
+          const parsedServices = res.data.map(svc => {
+            const parsed = { ...svc };
+            const jsonFields = ['features', 'portfolios', 'testimonials'];
+            jsonFields.forEach(field => {
+              if (typeof parsed[field] === 'string') {
+                try { parsed[field] = JSON.parse(parsed[field]); } catch(e) { parsed[field] = []; }
+              }
+            });
+            if (parsed.title && !parsed.name) parsed.name = parsed.title;
+            if (parsed.subtitle && !parsed.tagline) parsed.tagline = parsed.subtitle;
+            return parsed;
+          });
+          setServices(parsedServices);
         } else {
           console.warn('Failed to fetch services, using fallback.');
           setServices(servicesData);

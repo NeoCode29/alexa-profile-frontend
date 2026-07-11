@@ -131,7 +131,7 @@ const Services = () => {
                   {getHighlights(service).map((hl, i) => (
                     <li key={i}>
                       <FaCheckCircle className={styles.checkIcon} />
-                      <span>{hl}</span>
+                      <span>{hl.title || hl}</span>
                     </li>
                   ))}
                 </ul>
