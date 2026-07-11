@@ -86,6 +86,7 @@
 .featuredImageWrapper {
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-height: 500px;
   overflow: hidden;
   margin-bottom: 2.5rem;
   border: 1px solid var(--color-border);
@@ -105,6 +106,16 @@
 
 .articleBody p {
   margin-bottom: 1.5rem;
+}
+
+.articleBody img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  margin: 2rem auto;
+  display: block;
+  border-radius: 8px;
 }
 
 .articleBody h2 {
