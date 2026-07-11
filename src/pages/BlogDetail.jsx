@@ -10,15 +10,6 @@ const BlogDetail = () => {
   const { articleDetail: article, loading: detailLoading } = useArticles(null, null, articleId);
   const { articles: allArticles, loading: allLoading } = useArticles();
 
-  if (detailLoading || allLoading || !article) {
-    return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
-  }
-
-  // Related articles (exclude current, take top 4)
-  const relatedArticles = (allArticles || [])
-    .filter(a => a.id !== article.id && a.slug !== article.slug)
-    .slice(0, 4);
-
   useEffect(() => {
     if (article) {
       document.title = `${article.metaTitle || article.title} | Alexa Group`;
@@ -31,6 +22,15 @@ const BlogDetail = () => {
       metaDesc.content = article.metaDescription || article.excerpt || '';
     }
   }, [article]);
+
+  if (detailLoading || allLoading || !article) {
+    return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;
+  }
+
+  // Related articles (exclude current, take top 4)
+  const relatedArticles = (allArticles || [])
+    .filter(a => a.id !== article.id && a.slug !== article.slug)
+    .slice(0, 4);
 
   const handleShareCopy = () => {
     navigator.clipboard.writeText(window.location.href);
