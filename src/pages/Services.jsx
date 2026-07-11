@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styles from './Services.module.css';
 import { usePageContent } from '../hooks/usePageContent';
 import { useServices } from '../hooks/useServices';
+import { useSEO } from '../hooks/useSEO';
 import { testimonials as fallbackTestimonials } from '../data/mockData';
 
 const fadeUp = {
@@ -14,6 +15,13 @@ const fadeUp = {
 const Services = () => {
   const { data: pageData, loading: pageLoading } = usePageContent('services');
   const { services, loading: servicesLoading } = useServices();
+
+  useSEO({
+    title: pageData?.seoTitle,
+    description: pageData?.seoDescription,
+    keywords: pageData?.seoKeywords,
+    ogImage: pageData?.seoOgImage
+  });
 
   if (pageLoading || servicesLoading || !pageData) {
     return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;

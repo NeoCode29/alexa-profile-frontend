@@ -2,6 +2,7 @@ import { FaEye, FaBullseye } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
 import { usePageContent } from '../hooks/usePageContent';
+import { useSEO } from '../hooks/useSEO';
 import { teamData as fallbackTeamData } from '../data/mockData';
 
 const fadeUp = {
@@ -11,6 +12,13 @@ const fadeUp = {
 
 const About = () => {
   const { data: pageData, loading } = usePageContent('about');
+
+  useSEO({
+    title: pageData?.seoTitle,
+    description: pageData?.seoDescription,
+    keywords: pageData?.seoKeywords,
+    ogImage: pageData?.seoOgImage
+  });
 
   if (loading || !pageData) {
     return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Loading...</div>;

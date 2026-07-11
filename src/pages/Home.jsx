@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // import Marquee from 'react-fast-marquee';
 import styles from './Home.module.css';
 import { usePageContent } from '../hooks/usePageContent';
+import { useSEO } from '../hooks/useSEO';
 import { useServices } from '../hooks/useServices';
 import { useArticles } from '../hooks/useArticles';
 import { useClients } from '../hooks/useClients';
@@ -16,6 +17,14 @@ const fadeUp = {
 
 const Home = () => {
   const { data: pageData, loading } = usePageContent('home');
+
+  useSEO({
+    title: pageData?.seoTitle,
+    description: pageData?.seoDescription,
+    keywords: pageData?.seoKeywords,
+    ogImage: pageData?.seoOgImage
+  });
+
   const { services } = useServices();
   const { articles } = useArticles();
   const { clients: clientsData } = useClients();

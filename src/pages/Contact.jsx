@@ -3,6 +3,7 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPlus, FaMinus } from 'react-i
 import Swal from 'sweetalert2';
 import styles from './Contact.module.css';
 import { usePageContent } from '../hooks/usePageContent';
+import { useSEO } from '../hooks/useSEO';
 import { fetchApi } from '../services/api';
 
 const Contact = () => {
@@ -10,6 +11,13 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [loadingForm, setLoadingForm] = useState(false);
   const { data: pageData, loading: pageLoading } = usePageContent('contact');
+
+  useSEO({
+    title: pageData?.seoTitle,
+    description: pageData?.seoDescription,
+    keywords: pageData?.seoKeywords,
+    ogImage: pageData?.seoOgImage
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
