@@ -13,10 +13,11 @@ export function useClients() {
       const res = await fetchApi('/clients');
       if (res.success && res.data) {
         setClients(res.data);
+        setError(null);
       } else {
-        console.warn('Failed to fetch clients, using fallback mock data.');
-        setClients(clientsData);
-        setError(res.message);
+        console.warn(`Gagal mengambil klien: ${res.message}`);
+        setClients([]);
+        setError(res.message || 'Akses Ditolak / API Token Tidak Valid');
       }
       setLoading(false);
     }

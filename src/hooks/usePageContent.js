@@ -74,10 +74,11 @@ export function usePageContent(pageName) {
       const res = await fetchApi(`/pages/${pageName}`);
       if (res.success && res.data) {
         setData(res.data);
+        setError(null);
       } else {
-        console.warn(`Failed to fetch page content for ${pageName}, using fallback.`);
-        setData(fallbackData[pageName]);
-        setError(res.message);
+        console.warn(`Gagal mengambil halaman ${pageName}: ${res.message}`);
+        setData(null);
+        setError(res.message || 'Akses Ditolak / API Token Tidak Valid');
       }
       setLoading(false);
     }

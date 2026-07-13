@@ -15,10 +15,11 @@ export function useArticles(category = null, search = null, slug = null) {
         const res = await fetchApi(`/articles/${slug}`);
         if (res.success && res.data) {
           setArticleDetail(res.data);
+          setError(null);
         } else {
-          console.warn(`Failed to fetch article detail for ${slug}, using fallback.`);
-          // Simple fallback logic to find by ID assuming slug is similar to ID in mock
-          setArticleDetail(articlesData.find(a => a.id.toString() === slug) || articlesData[0]);
+          console.warn(`Gagal mengambil detail artikel ${slug}: ${res.message}`);
+          setArticleDetail(null);
+          setError(res.message || 'Akses Ditolak / API Token Tidak Valid');
         }
       } else {
         let url = '/articles?';
@@ -28,12 +29,11 @@ export function useArticles(category = null, search = null, slug = null) {
         const res = await fetchApi(url);
         if (res.success && res.data) {
           setArticles(res.data);
+          setError(null);
         } else {
-          console.warn('Failed to fetch articles, using fallback.');
-          let filtered = articlesData;
-          if (category && category !== 'All') filtered = filtered.filter(a => a.category === category);
-          if (search) filtered = filtered.filter(a => a.title.toLowerCase().includes(search.toLowerCase()));
-          setArticles(filtered);
+          console.warn(`Gagal mengambil daftar artikel: ${res.message}`);
+          setArticles([]);
+          setError(res.message || 'Akses Ditolak / API Token Tidak Valid');
         }
       }
       setLoading(false);

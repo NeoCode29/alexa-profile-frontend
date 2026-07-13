@@ -44,9 +44,11 @@ export function useServices(serviceId = null) {
           }
 
           setServiceDetail(parsedData);
+          setError(null);
         } else {
-          console.warn(`Failed to fetch service detail for ${serviceId}, using fallback.`);
-          setServiceDetail(serviceDetailsData[serviceId]);
+          console.warn(`Gagal mengambil detail layanan ${serviceId}: ${res.message}`);
+          setServiceDetail(null);
+          setError(res.message || 'Akses Ditolak / API Token Tidak Valid');
         }
       } else {
         const res = await fetchApi('/services');
@@ -64,9 +66,11 @@ export function useServices(serviceId = null) {
             return parsed;
           });
           setServices(parsedServices);
+          setError(null);
         } else {
-          console.warn('Failed to fetch services, using fallback.');
-          setServices(servicesData);
+          console.warn(`Gagal mengambil daftar layanan: ${res.message}`);
+          setServices([]);
+          setError(res.message || 'Akses Ditolak / API Token Tidak Valid');
         }
       }
       setLoading(false);
