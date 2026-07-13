@@ -36,8 +36,34 @@ const Breadcrumbs = () => {
     }
   };
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://alexagroup.co.id';
+  const schemaItemList = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${baseUrl}/`
+    },
+    ...pathnames.map((value, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": getBreadcrumbName(value, index),
+      "item": `${baseUrl}/${pathnames.slice(0, index + 1).join('/')}`
+    }))
+  ];
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": schemaItemList
+  };
+
   return (
     <div className={styles.breadcrumbsContainer}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className="container">
         <ul className={styles.breadcrumbsList}>
           <li>

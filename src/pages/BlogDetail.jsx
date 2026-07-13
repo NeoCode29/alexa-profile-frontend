@@ -52,8 +52,35 @@ const BlogDetail = () => {
   const authorName = article.author || 'Tim Editorial MediaKampung';
   const authorInitial = authorName.charAt(0);
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://alexagroup.co.id';
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.metaDescription || article.excerpt || '',
+    "author": {
+      "@type": "Person",
+      "name": authorName
+    },
+    "datePublished": new Date(article.createdAt || article.date || Date.now()).toISOString().split('T')[0],
+    "dateModified": new Date(article.updatedAt || article.createdAt || article.date || Date.now()).toISOString().split('T')[0],
+    "image": article.image ? (article.image.startsWith('http') ? article.image : baseUrl + article.image) : `${baseUrl}/favicon.svg`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Alexa Computindo Group",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/favicon.svg`
+      }
+    }
+  };
+
   return (
     <div className={styles.detailWrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       
       {/* Hero Section */}
       <section className={`${styles.heroSection} clip-diagonal-bottom`}>
