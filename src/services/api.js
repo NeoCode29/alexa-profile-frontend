@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
-const API_TOKEN = import.meta.env.VITE_API_TOKEN || 'alexa_live_secret_api_token_2026';
+const API_TOKEN = import.meta.env.VITE_API_TOKEN || '';
 
 export async function fetchApi(endpoint, options = {}) {
   try {
