@@ -229,7 +229,7 @@ const Home = () => {
                   <Link to={`/blog/${article.slug || article.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <h3>{article.title}</h3>
                   </Link>
-                  <Link to={`/blog/${article.slug || article.id}`} className={styles.articleLink}>Baca Selengkapnya <FaArrowRight /></Link>
+                  <Link to={`/blog/${article.slug || article.id}`} className={styles.articleLink}>Baca <FaArrowRight size={12} /></Link>
                 </div>
               </motion.div>
             ))}
