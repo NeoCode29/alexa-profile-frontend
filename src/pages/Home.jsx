@@ -220,13 +220,15 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <div className={styles.articleImgWrapper}>
+                <Link to={`/blog/${article.slug || article.id}`} className={styles.articleImgWrapper}>
                   <img src={article.image?.includes('uploads/') ? `http://localhost:4000${article.image.startsWith('/') ? '' : '/'}${article.image}?v=1` : article.image} alt={article.title} />
                   <div className={styles.articleCategory}>{article.category}</div>
-                </div>
+                </Link>
                 <div className={styles.articleContent}>
                   <div className={styles.articleDate}>{new Date(article.date || article.createdAt).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'})}</div>
-                  <h3>{article.title}</h3>
+                  <Link to={`/blog/${article.slug || article.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <h3>{article.title}</h3>
+                  </Link>
                   <Link to={`/blog/${article.slug || article.id}`} className={styles.articleLink}>Baca Selengkapnya <FaArrowRight /></Link>
                 </div>
               </motion.div>
